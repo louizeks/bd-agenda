@@ -62,6 +62,8 @@ public class ContatoDAO {
         values.put(SQLiteHelper.KEY_NOME, c.getNome());
         values.put(SQLiteHelper.KEY_FONE, c.getFone());
         values.put(SQLiteHelper.KEY_EMAIL, c.getEmail());
+        values.put(SQLiteHelper.KEY_CEL, c.getCelular());
+        values.put(SQLiteHelper.KEY_DT_NASC, c.getDataNascimento());
 
         long id = database.insert(SQLiteHelper.TABLE_NAME, null, values);
 
@@ -77,6 +79,8 @@ public class ContatoDAO {
         values.put(SQLiteHelper.KEY_NOME, c.getNome());
         values.put(SQLiteHelper.KEY_FONE, c.getFone());
         values.put(SQLiteHelper.KEY_EMAIL, c.getEmail());
+        values.put(SQLiteHelper.KEY_CEL, c.getCelular());
+        values.put(SQLiteHelper.KEY_DT_NASC, c.getDataNascimento());
 
         database.update(SQLiteHelper.TABLE_NAME, values,
                      SQLiteHelper.KEY_ID +"=" +c.getId(),null);

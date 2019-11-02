@@ -26,10 +26,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="CELULAR: "/>
+
+    <EditText
+        android:id="@+id/editTextCelular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="EMAIL: "/>
 
     <EditText
         android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DATA NASCIMENTO: "/>
+
+    <EditText
+        android:id="@+id/editTextDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -41,22 +41,17 @@ public class CadastroActivity extends AppCompatActivity {
             String nome = ((EditText) findViewById(R.id.editTextNome)).getText().toString();
             String fone = ((EditText) findViewById(R.id.editTextFone)).getText().toString();
             String email = ((EditText) findViewById(R.id.editTextEmail)).getText().toString();
+            String celular = ((EditText) findViewById(R.id.editTextCelular)).getText().toString();
+            String dataNascimento = ((EditText) findViewById(R.id.editTextDataNascimento)).getText().toString();
 
-            Contato c = new Contato(nome,fone,email);
+            Contato c = new Contato(nome,fone,email,celular,dataNascimento, 0);
             c.setId((int)dao.incluirContato(c));
 
             MainActivity.adapter.adicionaContatoAdapter(c);
-
             Toast.makeText(getApplicationContext(), "Contato inserido", Toast.LENGTH_LONG).show();
-
             finish();
-
-
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
