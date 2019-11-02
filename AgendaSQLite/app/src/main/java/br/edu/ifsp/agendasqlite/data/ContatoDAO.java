@@ -15,13 +15,11 @@ public class ContatoDAO {
     SQLiteDatabase database;
     SQLiteHelper dbHelper;
 
-    public ContatoDAO(Context context)
-    {
+    public ContatoDAO(Context context) {
         this.dbHelper = new SQLiteHelper(context);
     }
 
-    public List<Contato> listaContatos()
-    {
+    public List<Contato> listaContatos() {
         database = dbHelper.getReadableDatabase();
 
         List<Contato> contatos = new ArrayList<>();
@@ -29,22 +27,24 @@ public class ContatoDAO {
         Cursor cursor;
 
         cursor = database.query(SQLiteHelper.TABLE_NAME,
-                                null,
-                                null,
-                                null,
-                                null,
-                                 null,
-                                    SQLiteHelper.KEY_NOME);
+                null,
+                null,
+                null,
+                null,
+                null,
+                SQLiteHelper.KEY_NOME);
 
-        while (cursor.moveToNext())
-        {
-           Contato c = new Contato();
-           c.setId(cursor.getInt(0));
-           c.setNome(cursor.getString(1));
-           c.setFone(cursor.getString(2));
-           c.setEmail(cursor.getString(3));
+        while (cursor.moveToNext()) {
+            Contato c = new Contato();
+            c.setId(cursor.getInt(0));
+            c.setNome(cursor.getString(1));
+            c.setFone(cursor.getString(2));
+            c.setEmail(cursor.getString(3));
+            c.setFavorito(cursor.getInt(4));
+            c.setCelular(cursor.getString(5));
+            c.setDataNascimento(cursor.getString(6));
 
-           contatos.add(c);
+            contatos.add(c);
         }
 
         cursor.close();
@@ -54,8 +54,7 @@ public class ContatoDAO {
     }
 
 
-    public long incluirContato (Contato c)
-    {
+    public long incluirContato(Contato c) {
         database = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -71,8 +70,7 @@ public class ContatoDAO {
         return id;
     }
 
-    public void alterarContato(Contato c)
-    {
+    public void alterarContato(Contato c) {
         database = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -83,20 +81,35 @@ public class ContatoDAO {
         values.put(SQLiteHelper.KEY_DT_NASC, c.getDataNascimento());
 
         database.update(SQLiteHelper.TABLE_NAME, values,
-                     SQLiteHelper.KEY_ID +"=" +c.getId(),null);
+                SQLiteHelper.KEY_ID + "=" + c.getId(), null);
 
         database.close();
     }
 
-    public void excluirContato (Contato c)
-    {
+    public void excluirContato(Contato c) {
         database = dbHelper.getWritableDatabase();
 
         database.delete(SQLiteHelper.TABLE_NAME,
-                        SQLiteHelper.KEY_ID +"="+ c.getId(),null);
+                SQLiteHelper.KEY_ID + "=" + c.getId(), null);
 
         database.close();
 
     }
 
+    public void favoritarContato(Contato contato) {
+
+        database = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        if (contato.getFavorito() == 0)
+            values.put(SQLiteHelper.KEY_FAV, 1);
+        else
+            values.put(SQLiteHelper.KEY_FAV, 0);
+
+        database.update(SQLiteHelper.TABLE_NAME, values,
+                SQLiteHelper.KEY_ID + "=" + contato.getId(), null);
+
+        database.close();
+    }
 }

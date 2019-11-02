@@ -21,9 +21,8 @@ public class DetalheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
 
-        if (getIntent().hasExtra("contato"))
-        {
-            this.c = (Contato)getIntent().getSerializableExtra("contato");
+        if (getIntent().hasExtra("contato")) {
+            this.c = (Contato) getIntent().getSerializableExtra("contato");
 
             EditText nome = findViewById(R.id.editTextNome);
             nome.setText(c.getNome());
@@ -80,7 +79,7 @@ public class DetalheActivity extends AppCompatActivity {
             finish();
         }
 
-        if (id ==R.id.action_excluirContato) {
+        if (id == R.id.action_excluirContato) {
             ContatoDAO dao = new ContatoDAO(this);
             dao.excluirContato(c);
             MainActivity.adapter.apagaContatoAdapter(c);
@@ -92,8 +91,4 @@ public class DetalheActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 }
