@@ -102,7 +102,8 @@ public class ContatoAdapter
                 } else {
                     List<Contato> filteredList = new ArrayList<>();
                     for (Contato row : contatos) {
-                        if (row.getNome().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getNome().toLowerCase().contains(charString.toLowerCase()) ||
+                            row.getEmail().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
